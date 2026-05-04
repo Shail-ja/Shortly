@@ -12,8 +12,6 @@ def init_db():
     conn.commit()
     conn.close()    
 
-init_db()
-
 def generate_code(length=6):
     return ''.join(random.choices(string.ascii_letters + string.digits, k=length))
 
@@ -108,4 +106,5 @@ def delete_url(short_code):
     return redirect("/all")
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    init_db()
+    app.run()
