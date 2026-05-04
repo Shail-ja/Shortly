@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>All URLs</title>
+   <style>
+        body {
+            font-family: Arial;
+            background-color: #f5f5f5;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 40px auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            padding: 6px 10px;
+            border: none;
+            background-color: red;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>All Shortened URLs</h2>
+    <table>
+        <tr>
+            <th>Short Code</th>
+            <th>Long URL</th>
+            <th>Clicks</th>
+            <th>Actions</th>
+        </tr>
+        {% for short_code, long_url, clicks in urls %}
+        <tr>
+            <td><a href="/{{ short_code }}">{{ short_code }}</a></td>
+            <td>{{ long_url }}</td>
+            <td>{{ clicks }}</td>
+             <td>
+                <form action="/delete/{{ short_code }}" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+</body>
+</html>
